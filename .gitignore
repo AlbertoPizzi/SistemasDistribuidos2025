@@ -1,1 +1,50 @@
 .idea/
+# ------------------------
+# Python
+# ------------------------
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+.eggs/
+dist/
+build/
+.venv/
+venv/
+ENV/
+
+# gRPC stubs generados (Python)
+**/src/weatherapp_pb2.py
+**/src/weatherapp_pb2_grpc.py
+
+# ------------------------
+# Node / TypeScript
+# ------------------------
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.tsbuildinfo
+
+# ------------------------
+# Docker
+# ------------------------
+*.pid
+*.seed
+*.bak
+*.tar
+*.log
+
+# ------------------------
+# IDE / OS
+# ------------------------
+
+.vscode/
+.DS_Store
+Thumbs.db
+# ------------------------
+# Env files
+# ------------------------
+.env
