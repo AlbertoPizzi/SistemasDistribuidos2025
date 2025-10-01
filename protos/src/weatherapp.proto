@@ -1,0 +1,39 @@
+syntax = "proto3";
+package weatherapp;
+
+
+service IP2Location {
+  rpc Resolve (IPRequest) returns (LocationReply) {}
+}
+
+
+service Weather {
+  rpc Current (WeatherRequest) returns (WeatherReply) {}
+}
+
+
+message IPRequest {
+  string ip = 1; // puede venir vacío/"" para usar la IP de la request HTTP en el gateway
+}
+
+
+message LocationReply {
+  double lat = 1;
+  double lon = 2;
+  string city = 3;
+  string country = 4;
+}
+
+
+message WeatherRequest {
+  double lat = 1;
+  double lon = 2;
+}
+
+
+message WeatherReply {
+  string time = 1; // ISO8601 de open-meteo
+  double temperature = 2; // °C
+  double windspeed = 3; // km/h (open-meteo entrega m/s o km/h según endpoint)
+  int32 weathercode = 4; // código numérico open-meteo
+}

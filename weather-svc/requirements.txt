@@ -1,0 +1,4 @@
+grpcio==1.65.5
+grpcio-tools==1.65.5
+protobuf==5.27.3
+requests==2.32.3

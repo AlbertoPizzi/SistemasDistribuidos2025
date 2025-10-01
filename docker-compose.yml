@@ -1,0 +1,36 @@
+version: "3.9"
+services:
+  ip2location-svc:
+    build:
+      context: .
+      dockerfile: ip2location-svc/Dockerfile
+    environment:
+      - PORT=50051
+      - IPWHO_URL=https://ipwho.is/
+    # opcional: para debug
+    # ports:
+    #   - "50051:50051"
+
+  weather-svc:
+    build:
+      context: .
+      dockerfile: weather-svc/Dockerfile
+    environment:
+      - PORT=50052
+      - OPEN_METEO_URL=https://api.open-meteo.com/v1/forecast?current=temperature_2m,wind_speed_10m,weather_code&timezone=auto
+    # ports:
+    #   - "50052:50052"
+
+  gateway:
+    build:
+      context: .
+      dockerfile: gateway/Dockerfile
+    environment:
+      - PORT=8080
+      - IP2LOC_ADDR=ip2location-svc:50051
+      - WEATHER_ADDR=weather-svc:50052
+    ports:
+      - "8080:8080"
+    depends_on:
+      - ip2location-svc
+      - weather-svc
